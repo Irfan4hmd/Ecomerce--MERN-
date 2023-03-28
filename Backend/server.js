@@ -59,9 +59,9 @@ app.use('/api/v1',newroute)
 app.use(errorMiddleware)
 if (process.env.NODE_ENV === 'production') {  
   app.use(express.static(path.join(__dirname, "/public")));
-  app.get("/", (_, res) => {
-    res.setHeader("Access-Control-Allow-Credentials","true");
-   res.send("Backned Running");
+  app.get("/*", (_, res) => {
+    res.setHeader("Access-Control-Allow-Credentials","true")
+   res.sendFile(path.join(__dirname, "/public", "index.html"));
   });
 }
 app.post('/payments/create',async(request,response)=>{
